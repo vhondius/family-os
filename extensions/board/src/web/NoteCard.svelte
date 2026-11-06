@@ -335,6 +335,10 @@
 			transition: none;
 		}
 	}
+	/* On Today the papers lie straight: a quiet summary, not the cork. */
+	.paper.card {
+		transform: none;
+	}
 	/* A person who asks for more contrast gets straight, plain papers. */
 	@media (prefers-contrast: more) {
 		.paper,

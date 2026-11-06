@@ -26,14 +26,14 @@
 [data-style="broadsheet"] {
 	--style-font-display: "Barlow Condensed", var(--font-family);
 	--style-font-serif: "Instrument Serif", ui-serif, Georgia, serif;
-	--ramp-clock: 7.75rem;
+	--ramp-clock: 5.5rem;
 	--ramp-countdown: 8rem;
 	--ramp-big: 4rem;
 	--ramp-hero: 3.375rem;
-	--ramp-date: 2.125rem;
+	--ramp-date: 1.875rem;
 	--ramp-sentence: 1.25rem;
-	--ramp-label: 0.6875rem;
-	--ramp-label-tracking: 0.12em;
+	--ramp-label: 0.75rem;
+	--ramp-label-tracking: 0.06em;
 	--ramp-page: 1.75rem;
 	--ramp-page-phone: 1.625rem;
 	--ramp-page-tracking: -0.015em;

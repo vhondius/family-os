@@ -41,7 +41,7 @@
 	import { accessBook } from '#lib/access.svelte.js';
 	import { session } from '#lib/session.svelte.js';
 	import { enableServiceWorkerUpdates } from '#lib/sw-update.js';
-	import { applyTextSize, dayNight, followDayNight, textSize } from '#lib/theme.svelte.js';
+	import { applyTextSize, followDayNight, textSize } from '#lib/theme.svelte.js';
 	import { toasts } from '#lib/toast.svelte.js';
 	import { refusalKey, refusalOfError } from '#lib/refusal.js';
 	import { addPlacesFor, shareFor } from '#lib/contributions.js';
