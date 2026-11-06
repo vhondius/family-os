@@ -1,7 +1,7 @@
 name: Fork image
 
 # This fork only: every push to main builds the image the family's server runs,
-# ghcr.io/<owner>/familyos:main (and :sha-<commit> to go back to). Not for upstream.
+# ghcr.io/<owner>/familyos:main and :latest (and :sha-<commit> to go back to). Not for upstream.
 on:
   push:
     branches: [main]
@@ -28,6 +28,7 @@ jobs:
           images: ghcr.io/${{ github.repository_owner }}/familyos
           tags: |
             type=raw,value=main
+            type=raw,value=latest
             type=sha,prefix=sha-
 
       - uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3.7.0
