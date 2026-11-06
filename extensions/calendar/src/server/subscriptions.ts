@@ -29,9 +29,11 @@ import {
 	events,
 	expandRow,
 	externalAsEvent,
+	externalVersion,
 	type SubscriptionRow,
 	seriesEndOf,
 	seriesReaches,
+	subscriptionReminderTime,
 	tagsOf,
 } from './store.ts';
 
@@ -94,6 +96,9 @@ export function toSubscription(row: SubscriptionRow) {
 		color: row.color,
 		memberIds: JSON.parse(row.member_ids) as string[],
 		reminders: row.reminders === 1,
+		reminderDays: row.reminder_days,
+		reminderTime: row.reminder_time,
+		reminderMinutes: row.reminder_minutes,
 		allowLocal: row.allow_local === 1,
 		lastFetchedAt: row.last_fetched_at,
 		lastError: row.last_error,
@@ -137,6 +142,9 @@ export const addSubscription = defineAction({
 			color,
 			member_ids: JSON.stringify(input.memberIds),
 			reminders: input.reminders ? 1 : 0,
+			reminder_days: input.reminderDays,
+			reminder_time: input.reminderTime,
+			reminder_minutes: input.reminderMinutes,
 			allow_local: input.allowLocal ? 1 : 0,
 			etag: null,
 			last_modified: null,
@@ -170,7 +178,16 @@ export const updateSubscription = defineAction({
 		if (input.memberIds !== undefined) set.member_ids = JSON.stringify(input.memberIds);
 		if (input.reminders !== undefined) set.reminders = input.reminders ? 1 : 0;
 		if (input.allowLocal !== undefined) set.allow_local = input.allowLocal ? 1 : 0;
-		let refresh = input.reminders !== undefined || input.memberIds !== undefined;
+		if (input.reminderDays !== undefined) set.reminder_days = input.reminderDays;
+		if (input.reminderTime !== undefined) set.reminder_time = input.reminderTime;
+		if (input.reminderMinutes !== undefined) set.reminder_minutes = input.reminderMinutes;
+		// A refresh plans the reminders again (for people, timing, or turning them on).
+		let refresh =
+			input.reminders !== undefined ||
+			input.memberIds !== undefined ||
+			(input.reminderDays !== undefined && input.reminderDays !== current.reminder_days) ||
+			(input.reminderTime !== undefined && input.reminderTime !== current.reminder_time) ||
+			(input.reminderMinutes !== undefined && input.reminderMinutes !== current.reminder_minutes);
 		if (input.url !== undefined) {
 			const host = feedHost(input.url);
 			if (!host) throw new FamosError('bad_request', 'The address must be https: or webcal:');
@@ -260,7 +277,7 @@ const INSERT_BATCH = 100;
 /** Plans the next reminder of every event of a subscription that wants them. */
 async function scheduleReminders(ctx: JobContext, sub: SubscriptionRow, now: number) {
 	if (sub.reminders !== 1) return;
-	const { reminderTime } = await ctx.family.settings();
+	const reminderTime = subscriptionReminderTime(sub, (await ctx.family.settings()).reminderTime);
 	const rows = await events(ctx.db)
 		.selectFrom('calendar_external_events')
 		.selectAll()
@@ -277,7 +294,7 @@ async function scheduleReminders(ctx: JobContext, sub: SubscriptionRow, now: num
 				subscriptionId: sub.id,
 				uid: row.uid,
 				recurrenceKey: row.recurrence_key,
-				version: row.fingerprint,
+				version: externalVersion(row, sub),
 			},
 		);
 	}
