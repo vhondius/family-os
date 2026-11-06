@@ -17,7 +17,7 @@
 	import StylePreview from '#lib/today/StylePreview.svelte';
 	import TodayBlocksList from '#lib/today/TodayBlocksList.svelte';
 	import { availableTodayBlocks } from '#lib/today/today-data.svelte.js';
-	import { dayNight, type Mode } from '#lib/theme.svelte.js';
+	import { dayNight, type Mode, TEXT_SIZES, type TextSize, textSize } from '#lib/theme.svelte.js';
 
 	/**
 	 * Appearance: only what is yours. First the
@@ -32,6 +32,10 @@
 	const MODES: Mode[] = ['system', 'day', 'night'];
 	const modeOptions = $derived(
 		MODES.map((mode) => ({ value: mode, label: t(`appearance_mode_${mode}`) })),
+	);
+
+	const textSizeOptions = $derived(
+		TEXT_SIZES.map((size) => ({ value: size, label: t(`appearance_text_size_${size}`) })),
 	);
 
 	const styleName = (id: StyleId) => t(STYLES[id].nameKey);
@@ -111,7 +115,7 @@
 					>
 				{/if}
 			{/snippet}
-			<p class="text-ink-soft max-w-prose px-1 text-[13px]">{t('appearance_styles_hint')}</p>
+			<p class="text-ink-soft max-w-prose px-1 text-[0.8125rem]">{t('appearance_styles_hint')}</p>
 			<ul class="grid gap-3 @3xl:grid-cols-3">
 				{#each STYLE_IDS as id (id)}
 					{@const inUse = appearance.style === id}
@@ -130,7 +134,7 @@
 							{#key family.timeZone}<StylePreview style={id} />{/key}
 						</div>
 						<div class="flex flex-wrap items-center gap-x-2 gap-y-1.5 px-0.5">
-							<span class="text-[15px] font-bold">{styleName(id)}</span>
+							<span class="text-[0.9375rem] font-bold">{styleName(id)}</span>
 							{#if inUse}
 								<span class="ms-auto" data-testid="style-in-use">
 									<Pill tone="now">
@@ -176,7 +180,7 @@
 
 		<div id="today-blocks" class="scroll-mt-6">
 			<Section label={t('blocks_title')} count={t('appearance_yours_everywhere')}>
-				<p class="text-ink-soft max-w-prose px-1 text-[13px]">{t('blocks_hint')}</p>
+				<p class="text-ink-soft max-w-prose px-1 text-[0.8125rem]">{t('blocks_hint')}</p>
 				<TodayBlocksList
 					id="my-blocks"
 					{blocks}
@@ -208,6 +212,17 @@
 							options={modeOptions}
 							value={dayNight.mode}
 							onchange={(mode) => dayNight.set(mode as Mode)}
+						/>
+					{/snippet}
+				</SettingRow>
+				<SettingRow label={t('appearance_text_size')} hint={t('appearance_text_size_hint')}>
+					{#snippet control()}
+						<Segmented
+							grow
+							label={t('appearance_text_size')}
+							options={textSizeOptions}
+							value={textSize.size}
+							onchange={(size) => textSize.set(size as TextSize)}
 						/>
 					{/snippet}
 				</SettingRow>
@@ -256,7 +271,7 @@
 		</Section>
 
 		{#if manage}
-			<p class="text-ink-soft px-1 text-[13px]">
+			<p class="text-ink-soft px-1 text-[0.8125rem]">
 				{t('appearance_family_elsewhere')}
 				<a class="text-info font-semibold underline underline-offset-2" href="/settings/theme"
 					>{t('appearance_family_elsewhere_link')}</a
