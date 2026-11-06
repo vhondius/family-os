@@ -937,7 +937,6 @@
 	/* From 1024 px: the clock and the weather share a band on top; the rest is one column. */
 	@media (min-width: 1024px) and (max-width: 1279.98px) {
 		.wall {
-			--ramp-clock: 6.5rem;
 			--ramp-date: 1.375rem;
 			--ramp-big: 4.5rem;
 			--ramp-hero: 2.5rem;

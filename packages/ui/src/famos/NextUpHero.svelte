@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { CountdownWords, NextUpMode, PillWords } from './today-v3.js';
+	import type { CountdownWords, NextUpMode } from './today-v3.js';
 
 	/** The hero's words (catalog strings, already translated). */
 	export interface NextUpWords {
@@ -10,7 +10,6 @@
 		family: string;
 		me: string;
 		countdown: CountdownWords;
-		pill: PillWords;
 	}
 	export type { NextUpMode };
 </script>

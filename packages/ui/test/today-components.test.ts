@@ -55,7 +55,6 @@ const words: NextUpWords = {
 		inDuration: (d) => `in ${d}`,
 		nowUntil: (t) => `now, until ${t}`,
 	},
-	pill: { at: (p) => `At ${p}`, starts: (t) => `Starts ${t}`, until: (t) => `Until ${t}` },
 };
 
 const dayWords: MemberDayWords = {

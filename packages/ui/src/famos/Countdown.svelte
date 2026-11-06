@@ -125,6 +125,6 @@
 	.circled .u {
 		position: relative;
 		margin-top: 2px;
-		font-size: 0.625rem;
+		font-size: 0.75rem;
 	}
 </style>

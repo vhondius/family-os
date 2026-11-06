@@ -7,7 +7,7 @@
  *   clock      the clock                    hero      the next-up title
  *   countdown  the countdown's number       date      the date line
  *   big        big numbers (temperature)    sentence  the weather sentence, quiet notes
- *   label      tracked caps labels (`--ramp-label-tracking` their tracking)
+ *   (the caps labels are the same in every style: `--ramp-label` in type.css)
  *
  * The rest of the app keeps its templates and takes these through the role
  * classes in type.css:
@@ -32,8 +32,6 @@
 	--ramp-hero: 3.375rem;
 	--ramp-date: 1.875rem;
 	--ramp-sentence: 1.25rem;
-	--ramp-label: 0.75rem;
-	--ramp-label-tracking: 0.06em;
 	--ramp-page: 1.75rem;
 	--ramp-page-phone: 1.625rem;
 	--ramp-page-tracking: -0.015em;
@@ -59,14 +57,12 @@
 [data-style="lanes"] {
 	--style-font-display: "Archivo Variable", var(--font-family);
 	--style-font-serif: var(--font-family);
-	--ramp-clock: 5.75rem;
+	--ramp-clock: 5.5rem;
 	--ramp-countdown: 5.25rem;
 	--ramp-big: 3.5rem;
 	--ramp-hero: 2.25rem;
 	--ramp-date: 1.625rem;
 	--ramp-sentence: 1rem;
-	--ramp-label: 0.71875rem;
-	--ramp-label-tracking: 0.16em;
 	--ramp-page: 1.5rem;
 	--ramp-page-phone: 1.5rem;
 	--ramp-page-tracking: -0.015em;
@@ -87,19 +83,17 @@
 }
 
 /* Wall: one face (Figtree in every slot) at a large scale; the sizes of
-   the wall at 1440 (a 150 px clock, a 96 px temperature, a 52 px number in the countdown ring,
+   the wall at 1440 (an 88 px clock, as every style, a 96 px temperature, a 52 px number in the countdown ring,
    a 44 px hero title). The composition sets smaller values for the 1024 band and the phone. */
 [data-style="wall"] {
 	--style-font-display: var(--font-family);
 	--style-font-serif: var(--font-family);
-	--ramp-clock: 9.375rem;
+	--ramp-clock: 5.5rem;
 	--ramp-countdown: 6rem;
 	--ramp-big: 6rem;
 	--ramp-hero: 2.75rem;
 	--ramp-date: 1.5rem;
 	--ramp-sentence: 1.125rem;
-	--ramp-label: 0.6875rem;
-	--ramp-label-tracking: 0.14em;
 	--ramp-page: 2rem;
 	--ramp-page-phone: 1.75rem;
 	--ramp-page-tracking: -0.02em;

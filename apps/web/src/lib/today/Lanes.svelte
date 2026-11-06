@@ -970,7 +970,8 @@
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 			align-items: start;
-			gap: 24px;
+			/* Wide enough between blocks for a section's ⋯, which hangs past its row's end. */
+			gap: 24px 44px;
 		}
 		.band > * {
 			order: var(--o, 50);
@@ -1055,10 +1056,9 @@
 		}
 	}
 
-	/* From 1280 px: the sizes of the design (a 92 px clock, an 84 px countdown, a 36 px title). */
+	/* From 1280 px: the sizes of the design (an 84 px countdown, a 36 px title; the clock is the style's). */
 	@media (min-width: 1280px) {
 		.ln {
-			--ramp-clock: 5.75rem;
 			--ramp-countdown: 5.25rem;
 			--ramp-hero: 2.25rem;
 			--ramp-big: 3.5rem;
