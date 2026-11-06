@@ -44,7 +44,7 @@
 	data-testid="countdown"
 >
 	{#if variant === 'ring'}
-		<Ring {fraction} text="" {size} stroke={Math.max(4, Math.round(size / 18))} onAccent />
+		<Ring {fraction} text="" {size} stroke={Math.max(3, Math.round(size / 27))} onAccent />
 	{/if}
 	<span class="n font-display"
 		>{#if view.parts}{view.parts.hours}<small class="hu">{view.parts.unit}</small>{view.parts
