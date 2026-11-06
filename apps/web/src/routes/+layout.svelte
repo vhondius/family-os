@@ -364,11 +364,8 @@
 			: { href: '/more', label: t('nav_more') };
 	});
 
-	// Re-applied whenever this device's day/night choice changes.
-	$effect(() => {
-		void dayNight.mode;
-		return followDayNight();
-	});
+	// Re-applied whenever this device's day/night choice or the family's time zone changes.
+	$effect(() => followDayNight());
 	$effect(() => enableServiceWorkerUpdates());
 	$effect(() => {
 		keepExtensionsOffline();
