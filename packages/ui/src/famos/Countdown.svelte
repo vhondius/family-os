@@ -94,7 +94,10 @@
 		letter-spacing: 0.16em;
 		text-transform: uppercase;
 	}
+	/* In the ring the text is sized by the ring too (`cqi`: a share of its width), so a 12-hour
+	   time, a longer word or a larger text size never runs into the circle. */
 	.circled {
+		container-type: inline-size;
 		position: relative;
 		display: grid;
 		place-items: center;
@@ -109,22 +112,22 @@
 	}
 	.circled .n {
 		position: relative;
-		font-size: calc(var(--ramp-countdown, 6rem) * 0.54);
+		font-size: min(calc(var(--ramp-countdown, 6rem) * 0.54), 42cqi);
 		font-weight: 800;
 		line-height: 0.9;
 		letter-spacing: -0.04em;
 	}
 	.circled.duration .n {
-		font-size: calc(var(--ramp-countdown, 6rem) * 0.42);
+		font-size: min(calc(var(--ramp-countdown, 6rem) * 0.42), 30cqi);
 		letter-spacing: -0.02em;
 	}
 	.circled.time .n,
 	.circled.now .n {
-		font-size: calc(var(--ramp-countdown, 6rem) * 0.31);
+		font-size: min(calc(var(--ramp-countdown, 6rem) * 0.31), 17cqi);
 	}
 	.circled .u {
 		position: relative;
 		margin-top: 2px;
-		font-size: 0.75rem;
+		font-size: min(0.75rem, 10cqi);
 	}
 </style>
