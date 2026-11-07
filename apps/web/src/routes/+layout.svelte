@@ -617,7 +617,7 @@
 		<!-- Phones: bottom tabs -->
 		<nav
 			aria-label={t('nav_label')}
-			class="bg-surface fixed inset-x-0 bottom-0 grid grid-cols-5 border-t px-1 pt-1 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden"
+			class="bg-surface fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t px-1 pt-1 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden"
 			style:grid-template-columns="repeat({nav.phonePrimary.length + 2}, minmax(0, 1fr))"
 		>
 			{@render navLink(TODAY, 'tab')}
