@@ -1,6 +1,6 @@
 # Appearance
 
-How FamilyOS looks is two choices: a **style** (how things are arranged) and a **theme** (the colors). Any style works with any theme. Day, Night, System (follow the device) or Clock (night from 20:00 until 06:00 in the family's time zone) is a third choice each device makes for itself; every theme has a day and a night look. **Text size** (Small, Normal, Large, Larger) is also per device: it makes all text bigger for a screen read from across the room. Family displays follow the sun.
+How FamilyOS looks is two choices: a **style** (how things are arranged) and a **theme** (the colors). Any style works with any theme. Light, dark, "follow my device" or "by the clock" (dark from 20:00 until 06:00 in the family's time zone) is a third choice each device makes for itself; every theme has a day and a night look. **Text size** (Small, Normal, Large, Larger) is also per device: it makes all text bigger for a screen read from across the room. Family displays follow the sun.
 
 ## The styles
 
