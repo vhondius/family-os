@@ -17,7 +17,6 @@
 	import StylePreview from '#lib/today/StylePreview.svelte';
 	import TodayBlocksList from '#lib/today/TodayBlocksList.svelte';
 	import { availableTodayBlocks } from '#lib/today/today-data.svelte.js';
-	import { MODES } from '#lib/day-night.js';
 	import { dayNight, type Mode, TEXT_SIZES, type TextSize, textSize } from '#lib/theme.svelte.js';
 
 	/**
@@ -30,6 +29,7 @@
 	const manage = $derived(session.can('core.settings.manage'));
 	let error = $state<string | null>(null);
 
+	const MODES: Mode[] = ['system', 'day', 'night'];
 	const modeOptions = $derived(
 		MODES.map((mode) => ({ value: mode, label: t(`appearance_mode_${mode}`) })),
 	);
