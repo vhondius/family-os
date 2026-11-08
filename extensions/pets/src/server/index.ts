@@ -1,6 +1,7 @@
 import { defineExtension } from '@famos/sdk';
 import pkg from '../../package.json' with { type: 'json' };
 import en from '../messages/en.json' with { type: 'json' };
+import nl from '../messages/nl.json' with { type: 'json' };
 import tr from '../messages/tr.json' with { type: 'json' };
 import { petsEdit, petsView } from './capabilities.ts';
 import { petsDigest } from './digest.ts';
@@ -26,7 +27,7 @@ import { treatmentKind } from './understand.ts';
  */
 export default defineExtension({
 	manifest: pkg.famos,
-	messages: { en, tr },
+	messages: { en, tr, nl },
 	migrations,
 	recordIds: ['pet'],
 	ai: { context: aiContext.id, kinds: [treatmentKind] },
