@@ -846,10 +846,11 @@
 					{#if loadError}
 						<p class="text-attention font-semibold">{t('error')}</p>
 					{/if}
-					<!-- Fitted: every hour with something in it (at least 07:00 to 22:00), no inner scroll. -->
-					<div class="h-[60rem]">
+					<!-- Fitted: all 24 hours, no inner scroll; the page scrolls instead. -->
+					<div class="h-[72rem]">
 						<WeekBoard
 							fit
+							wholeDay
 							days={week}
 							items={visible}
 							{now}

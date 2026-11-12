@@ -38,6 +38,7 @@
 		onadd,
 		onday,
 		fit = false,
+		wholeDay = false,
 	}: {
 		days: readonly string[];
 		items: readonly Occurrence[];
@@ -56,6 +57,8 @@
 		 * still shows "+N more" in its column.
 		 */
 		fit?: boolean;
+		/** With `fit`: the board always shows all 24 hours, not only the hours worth showing. */
+		wholeDay?: boolean;
 	} = $props();
 	const { app, t } = useCalendar();
 	const tz = $derived(app.timeZone());
@@ -128,18 +131,20 @@
 		}),
 	);
 	const win = $derived(
-		fit
-			? fitWindow(
-					byDay.flatMap((d) =>
-						d.chips
-							.filter(
-								({ chip }) =>
-									!isLongBlock(chip.occurrence.start as number, chip.occurrence.end as number),
-							)
-							.map(({ chip }) => chip),
-					),
-				)
-			: null,
+		fit && wholeDay
+			? { from: 0, to: 24 }
+			: fit
+				? fitWindow(
+						byDay.flatMap((d) =>
+							d.chips
+								.filter(
+									({ chip }) =>
+										!isLongBlock(chip.occurrence.start as number, chip.occurrence.end as number),
+								)
+								.map(({ chip }) => chip),
+						),
+					)
+				: null,
 	);
 	const hour = $derived(win ? fitHour(bodyH, win) : hourHeight(bodyH));
 	// The next thing: today's first event still to start, marked in `accent`.
